@@ -1,0 +1,20 @@
+{
+	"name": "circleci-sample",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"deploy": "echo This is Deploy-Script"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/t-shiratori/circleci-sample.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/t-shiratori/circleci-sample/issues"
+	},
+	"homepage": "https://github.com/t-shiratori/circleci-sample#readme"
+}
