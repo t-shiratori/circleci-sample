@@ -8,14 +8,22 @@ import (
 func main() {
 	fmt.Println("hello go")
 
+	c := make(chan int) // チャネルを作成
+
 	for i := 0; i < 5; i++ {
-		go sleepyGopher(i)
+		go sleepyGopher(i, c) // goroutine
 	}
 
-	time.Sleep(4 * time.Second)
+	for i := 0; i < 5; i++ {
+		gopherID := <-c // チャネルで値を受信
+		fmt.Println("gopher", gopherID, "スリープを終えました")
+	}
+
+	//time.Sleep(4 * time.Second)
 }
 
-func sleepyGopher(id int) {
+func sleepyGopher(id int, c chan int) {
 	time.Sleep(3 * time.Second)
 	fmt.Println("...", id, "snore ...")
+	c <- id // チャネルに値を送信
 }
