@@ -10,11 +10,13 @@ func main() {
 
 	c := make(chan int) // チャネルを作成
 
-	for i := 0; i < 5; i++ {
+	callNum := 5
+
+	for i := 0; i < callNum; i++ {
 		go sleepyGopher(i, c) // goroutine
 	}
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < callNum; i++ {
 		gopherID := <-c // チャネルで値を受信
 		fmt.Println("gopher", gopherID, "スリープを終えました")
 	}
