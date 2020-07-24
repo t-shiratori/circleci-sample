@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
 func main() {
-	fmt.Println("hello go")
 
 	c := make(chan int) // チャネルを作成
 
@@ -18,14 +18,16 @@ func main() {
 
 	for i := 0; i < callNum; i++ {
 		gopherID := <-c // チャネルで値を受信
-		fmt.Println("gopher", gopherID, "スリープを終えました")
+		fmt.Println("gopher", gopherID, "はスリープを終えました。")
 	}
 
 	//time.Sleep(4 * time.Second)
 }
 
 func sleepyGopher(id int, c chan int) {
-	time.Sleep(3 * time.Second)
-	fmt.Println("...", id, "snore ...")
+	rand.Seed(time.Now().UnixNano())
+	randomNum := rand.Intn(4)
+	time.Sleep(time.Duration(randomNum) * time.Second)
+	fmt.Println("gopher", id, "は、", randomNum, "秒寝ます。 ... snore ...")
 	c <- id // チャネルに値を送信
 }
